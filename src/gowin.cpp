@@ -785,7 +785,7 @@ bool Gowin::writeSRAM(const uint8_t *data, int length)
 	printInfo("Load SRAM ", false);
 	if (_verbose)
 		displayReadReg("before write sram", readStatusReg());
-	ProgressBar progress("Load SRAM", length, 50, _quiet);
+	//ProgressBar progress("Load SRAM", length, 50, _quiet);
 	send_command(CONFIG_ENABLE); // config enable
 
 	/* UG704 3.4.3 */
@@ -808,9 +808,9 @@ bool Gowin::writeSRAM(const uint8_t *data, int length)
 		_jtag->shiftDR(ptr, NULL, chunk, next);
 		ptr += chunk >> 3; // in bytes
 		remains -= chunk;
-		progress.display(length - remains);
+		//progress.display(length - remains);
 	}
-	progress.done();
+	//progress.done();
 	send_command(0x0a);
 	uint32_t checksum = static_cast<FsParser *>(_fs.get())->checksum();
 	checksum = htole32(checksum);
@@ -823,13 +823,13 @@ bool Gowin::writeSRAM(const uint8_t *data, int length)
 	uint32_t status_reg = readStatusReg();
 	if (_verbose)
 		displayReadReg("after write sram", status_reg);
-	if (status_reg & STATUS_DONE_FINAL) {
+	/* if (status_reg & STATUS_DONE_FINAL) {
 		printSuccess("DONE");
 		return true;
 	} else {
 		printSuccess("FAIL");
 		return false;
-	}
+	} */
 }
 
 /* Erase SRAM:
