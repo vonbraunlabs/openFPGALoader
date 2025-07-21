@@ -1,4 +1,4 @@
-# DevChipBoard Programmer
+# openFPGALoader
 
 Este é um fork do [openFPGALoader]([github.com/phdussud/pico-dirtyJtag](https://github.com/trabucayre/openFPGALoader)), tendo um apenas um patch para o funcionamento da versão em webassembly para usar a tangprimer20k.
 
